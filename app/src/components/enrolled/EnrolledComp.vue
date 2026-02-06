@@ -72,52 +72,19 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue';
+import { reactive } from 'vue';
 
-const selectedYear = ref(2026);
-const years = ref([2024, 2025, 2026]);
-
-const yearlyData = {
-  2026: {
-    rtc: { enrolled: 634, graduated: 579, assessed: 1, certified: 0 },
-    targets: { enrolled: 6946, graduated: 6251, assessed: 5001, certified: 4651 }
-  },
-  2025: {
-    rtc: { enrolled: 5200, graduated: 4800, assessed: 3000, certified: 2500 },
-    targets: { enrolled: 6000, graduated: 5500, assessed: 4500, certified: 4000 }
-  }
-};
-
-const rtc = reactive({ ...yearlyData[2026].rtc });
-const targets = reactive({ ...yearlyData[2026].targets });
-
-watch(selectedYear, (newYear) => {
-  if (yearlyData[newYear]) {
-    Object.assign(rtc, yearlyData[newYear].rtc);
-    Object.assign(targets, yearlyData[newYear].targets);
-  }
+const rtc = reactive({
+  enrolled: 634,
+  graduated: 579,
+  assessed: 1,
+  certified: 0
 });
 
-const calculatePercent = (val, target) => Math.min(Math.round((val / target) * 100), 100);
-
-const getBarColor = (key) => {
-  if (key === 'graduated') return 'bg-emerald-500';
-  if (key === 'assessed') return 'bg-amber-500';
-  return 'bg-blue-500';
-};
-
-const getComplianceTextColor = (key) => {
-  if (key === 'graduated') return 'text-emerald-600';
-  return 'text-slate-500';
-};
-
-const getIcon = (key) => {
-  const icons = { enrolled: 'pi pi-users', graduated: 'pi pi-graduation-cap', assessed: 'pi pi-check-square', certified: 'pi pi-verified' };
-  return icons[key];
-};
-
-const getComplianceColor = (key) => {
-  const colors = { enrolled: 'bg-blue-500 text-white', graduated: 'bg-emerald-500 text-white', assessed: 'bg-amber-500 text-white', certified: 'bg-slate-500 text-white' };
-  return colors[key];
-};
+const targets = reactive({
+  enrolled: 6946,
+  graduated: 6251,
+  assessed: 5001,
+  certified: 4651
+});
 </script>

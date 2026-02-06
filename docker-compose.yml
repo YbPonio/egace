@@ -36,7 +36,7 @@ services:
         - UPLOAD_LIMIT=300M
         - MYSQL_USERNAME=root
         - MYSQL_ROOT_PASSWORD=kis_pass
-        - PMA_HOST=rmis_db
+        - PMA_HOST=egace_db
         - PMA_PORT=3306
         - PMA_USER=root
         - PMA_PASSWORD=kis_pass

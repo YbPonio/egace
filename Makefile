@@ -49,7 +49,7 @@ initialize:
 	docker exec ${DB_INSTANCE} mysql -p${DB_PASSWORD} \
 		-e " \
 			CREATE DATABASE IF NOT EXISTS kis; \
-			CREATE DATABASE IF NOT EXISTS kis_rmis; \
+			CREATE DATABASE IF NOT EXISTS kis_egace; \
 		   "
 	sudo chmod 777 api/storage -R	
 restore_warning:

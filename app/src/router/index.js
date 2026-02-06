@@ -8,6 +8,11 @@ const router = createRouter({
       name: "dashboard",
       component: () => import("../components/Dashboard.vue"),
     },
+    {
+      path: "/data",
+      name: "data",
+      component: () => import("../components/DataRender.vue"),
+    }
   ],
 });
 

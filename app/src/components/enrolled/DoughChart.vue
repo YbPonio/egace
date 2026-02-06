@@ -24,11 +24,18 @@ const chartOptions = ref(null);
 
 const setChartData = (data) => {
   return {
+<<<<<<< HEAD
     labels: ["Enrolled", "Graduated", "Assessed", "Certified"],
     datasets: [
       {
         // Use the values directly from the prop
         data: [data.enrolled, data.graduated, data.assessed, data.certified],
+=======
+    labels: Object.keys(data).map(key => key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()),
+    datasets: [
+      {
+        data: Object.values(data),
+>>>>>>> bd84222 (Enhance EnrolledComp component with year selection and improved data visualization)
         backgroundColor: ["#6366f1", "#14b8a6", "#f59e0b", "#94a3b8"],
         hoverBackgroundColor: ["#4f46e5", "#0d9488", "#d97706", "#64748b"],
         borderWidth: 2,
