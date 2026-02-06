@@ -63,7 +63,8 @@
       <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
         <h3 class="text-sm font-bold text-slate-700 mb-6 uppercase">Efficiency Compliance</h3>
         <div class="h-[300px]">
-           <dough-chart :compliance="[121.67, 0.22, 0]" />
+           <!-- <dough-chart :compliance="[121.67, 0.22, 0]" /> -->
+            <dough-chart :chart-data-input="rtc" />
         </div>
       </div>
     </div>

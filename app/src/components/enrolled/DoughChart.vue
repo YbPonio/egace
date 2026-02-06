@@ -10,24 +10,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 
-onMounted(() => {
-  chartData.value = setChartData();
-  chartOptions.value = setChartOptions();
+const props = defineProps({
+  chartDataInput: {
+    type: Object,
+    required: true
+  }
 });
 
 const chartData = ref();
 const chartOptions = ref(null);
 
-const setChartData = () => {
+const setChartData = (data) => {
   return {
-    labels: ["Enrolled", "Graduated", "Assessed"],
+    labels: ["Enrolled", "Graduated", "Assessed", "Certified"],
     datasets: [
       {
-        data: [540, 325, 702],
-        backgroundColor: ["#6366f1", "#14b8a6", "#f43f5e"],
-        hoverBackgroundColor: ["#4f46e5", "#0d9488", "#e11d48"],
+        // Use the values directly from the prop
+        data: [data.enrolled, data.graduated, data.assessed, data.certified],
+        backgroundColor: ["#6366f1", "#14b8a6", "#f59e0b", "#94a3b8"],
+        hoverBackgroundColor: ["#4f46e5", "#0d9488", "#d97706", "#64748b"],
         borderWidth: 2,
         borderColor: "#ffffff",
         hoverOffset: 10,
@@ -48,86 +51,19 @@ const setChartOptions = () => {
           pointStyle: "circle",
           padding: 20,
           color: "#64748b",
-          font: {
-            family: "Inter, sans-serif",
-            size: 12,
-            weight: "600",
-          },
+          font: { family: "Inter, sans-serif", size: 12, weight: "600" },
         },
       },
-      tooltip: {
-        backgroundColor: "#1e293b",
-        padding: 12,
-        cornerRadius: 8,
-        usePointStyle: true,
-      },
-    },
-    animation: {
-      animateRotate: true,
-      animateScale: true,
     },
   };
 };
-</script>
 
-<!-- <template>
-  <div class="card flex justify-center">
-    <Chart
-      type="doughnut"
-      :data="chartData"
-      :options="chartOptions"
-      class="w-full md:w-[20rem]"
-    />
-  </div>
-</template>
-
-<script setup>
-import { ref, onMounted } from "vue";
+watch(() => props.chartDataInput, (newData) => {
+  chartData.value = setChartData(newData);
+}, { deep: true });
 
 onMounted(() => {
-  chartData.value = setChartData();
+  chartData.value = setChartData(props.chartDataInput);
   chartOptions.value = setChartOptions();
 });
-
-const chartData = ref();
-const chartOptions = ref(null);
-
-const setChartData = () => {
-  const documentStyle = getComputedStyle(document.body);
-
-  return {
-    labels: ["A", "B", "C"],
-    datasets: [
-      {
-        data: [540, 325, 702],
-        backgroundColor: [
-          documentStyle.getPropertyValue("--p-cyan-500"),
-          documentStyle.getPropertyValue("--p-orange-500"),
-          documentStyle.getPropertyValue("--p-gray-500"),
-        ],
-        hoverBackgroundColor: [
-          documentStyle.getPropertyValue("--p-cyan-400"),
-          documentStyle.getPropertyValue("--p-orange-400"),
-          documentStyle.getPropertyValue("--p-gray-400"),
-        ],
-      },
-    ],
-  };
-};
-
-const setChartOptions = () => {
-  const documentStyle = getComputedStyle(document.documentElement);
-  const textColor = documentStyle.getPropertyValue("--p-text-color");
-
-  return {
-    plugins: {
-      legend: {
-        labels: {
-          cutout: "60%",
-          color: textColor,
-        },
-      },
-    },
-  };
-};
-</script> -->
+</script>
