@@ -73,12 +73,10 @@
 
 <script setup>
 import { ref, reactive, watch } from 'vue';
-import Select from 'primevue/select';
 
 const selectedYear = ref(2026);
 const years = ref([2024, 2025, 2026]);
 
-// Mock data structure for year filtering
 const yearlyData = {
   2026: {
     rtc: { enrolled: 634, graduated: 579, assessed: 1, certified: 0 },
@@ -93,7 +91,6 @@ const yearlyData = {
 const rtc = reactive({ ...yearlyData[2026].rtc });
 const targets = reactive({ ...yearlyData[2026].targets });
 
-// Update data when year changes
 watch(selectedYear, (newYear) => {
   if (yearlyData[newYear]) {
     Object.assign(rtc, yearlyData[newYear].rtc);
