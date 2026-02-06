@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <Tabs value="0">
       <TabList>
         <Tab value="0">Enrolled</Tab>
@@ -14,11 +14,11 @@
         </TabPanel>
       </TabPanels>
     </Tabs>
-  </div>
+  </div> -->
+  <enrolled-comp />
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 :deep(.p-tablist-tab-list) {
