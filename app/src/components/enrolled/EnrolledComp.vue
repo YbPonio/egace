@@ -21,10 +21,10 @@
       <div v-for="(val, key) in rtc" :key="key" 
            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all hover:shadow-md">
         
-        <div class="flex justify-between items-start mb-4">
+        <div class="flex justify-between items-center mb-4">
           <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">{{ key }}</span>
-          <div :class="getComplianceColor(key)" class="p-2 rounded-lg bg-opacity-10">
-            <i :class="getIcon(key)" class="text-sm"></i>
+          <div :class="getComplianceColor(key)" class="flex items-center justify-center w-10 h-10 rounded-xl">
+            <i :class="getIcon(key)" class="text-lg"></i>
           </div>
         </div>
 
@@ -99,10 +99,10 @@ watch(selectedYear, (newYear) => {
 });
 
 const colors = {
-  enrolled: { main: 'text-blue-600', bg: 'bg-blue-600', bar: 'bg-blue-500' },
-  graduated: { main: 'text-emerald-600', bg: 'bg-emerald-600', bar: 'bg-emerald-500' },
-  assessed: { main: 'text-amber-600', bg: 'bg-amber-600', bar: 'bg-amber-500' },
-  certified: { main: 'text-purple-600', bg: 'bg-purple-600', bar: 'bg-purple-500' }
+  enrolled: { main: 'text-blue-600', bg: 'bg-blue-100', bar: 'bg-blue-500' },
+  graduated: { main: 'text-emerald-600', bg: 'bg-emerald-100', bar: 'bg-emerald-500' },
+  assessed: { main: 'text-amber-600', bg: 'bg-amber-100', bar: 'bg-amber-500' },
+  certified: { main: 'text-purple-600', bg: 'bg-purple-100', bar: 'bg-purple-500' }
 };
 
 const icons = {
