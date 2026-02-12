@@ -97,4 +97,34 @@ watch(selectedYear, (newYear) => {
     Object.assign(targets, yearlyData[newYear].targets);
   }
 });
+
+const colors = {
+  enrolled: { main: 'text-blue-600', bg: 'bg-blue-600', bar: 'bg-blue-500' },
+  graduated: { main: 'text-emerald-600', bg: 'bg-emerald-600', bar: 'bg-emerald-500' },
+  assessed: { main: 'text-amber-600', bg: 'bg-amber-600', bar: 'bg-amber-500' },
+  certified: { main: 'text-purple-600', bg: 'bg-purple-600', bar: 'bg-purple-500' }
+};
+
+const icons = {
+  enrolled: 'pi pi-user-plus',
+  graduated: 'pi pi-graduation-cap',
+  assessed: 'pi pi-file-edit',
+  certified: 'pi pi-verified'
+};
+
+const getIcon = (key) => icons[key] || 'pi pi-circle-fill';
+
+const getComplianceColor = (key) => {
+  const color = colors[key];
+  return `${color?.bg} ${color?.main}`;
+};
+
+const getComplianceTextColor = (key) => colors[key]?.main || 'text-slate-600';
+
+const getBarColor = (key) => colors[key]?.bar || 'bg-slate-500';
+
+const calculatePercent = (val, target) => {
+  if (!target) return 0;
+  return Math.round((val / target) * 100);
+};
 </script>
